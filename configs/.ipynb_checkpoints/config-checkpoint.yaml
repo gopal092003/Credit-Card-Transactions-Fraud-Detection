@@ -1,0 +1,77 @@
+# =========================
+# DATA PATHS
+# =========================
+data:
+  train_path: data/raw/fraudTrain.csv
+  test_path: data/raw/fraudTest.csv
+
+# =========================
+# FEATURES
+# =========================
+features:
+  target: is_fraud
+
+  categorical:
+    - merchant
+    - category
+    - gender
+    - state
+    - job
+    - part_of_day
+
+  low_cardinality:
+    - gender
+    - part_of_day
+    - category
+
+  high_cardinality:
+    - merchant
+    - state
+    - job
+    - zip
+
+# =========================
+# MODEL CONFIG
+# =========================
+model:
+  type: catboost   # options: catboost, xgboost
+
+  catboost:
+    iterations: 600
+    learning_rate: 0.05
+    depth: 8
+    loss_function: Logloss
+    eval_metric: Recall
+    scale_pos_weight: 20
+    random_seed: 42
+
+  xgboost:
+    n_estimators: 400
+    learning_rate: 0.05
+    max_depth: 6
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: logloss
+    random_state: 42
+
+# =========================
+# TRAINING
+# =========================
+training:
+  test_size: 0.2
+  random_state: 42
+  stratify: true
+
+# =========================
+# OUTPUT PATHS
+# =========================
+output:
+  model_dir: outputs/models/
+  metrics_dir: outputs/metrics/
+
+# =========================
+# EXPERIMENT SETTINGS
+# =========================
+experiment:
+  save_model: true
+  save_metrics: true
