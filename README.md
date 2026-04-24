@@ -150,4 +150,6 @@ outputs/
 
 ## 👨‍💻 Author
 
-github.com/gopal0992003
+**Gopal Gupta**
+
+* GitHub: https://github.com/gopal092003
