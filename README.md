@@ -121,7 +121,7 @@ data/raw/
 
 Clone the repository:
 
-```bash
+```
 git clone https://github.com/gopal092003/fraud-detection.git
 
 cd fraud-detection
@@ -129,7 +129,7 @@ cd fraud-detection
 
 Install the required dependencies:
 
-```bash
+```
 pip install -r requirements.txt
 ```
 
@@ -139,7 +139,7 @@ pip install -r requirements.txt
 
 Start the training pipeline with:
 
-```bash
+```
 python main.py
 ```
 
