@@ -37,15 +37,13 @@ The training workflow consists of the following stages:
 
 > Add the pipeline diagram below once available.
 
-```text
-assets/pipeline.png
-```
+![ML Pipeline](assets/pipeline.png)
 
 ---
 
 ## Project Structure
 
-```text
+```
 fraud-detection/
 │
 ├── configs/
@@ -111,7 +109,7 @@ https://www.kaggle.com/datasets/kartik2112/fraud-detection
 
 After downloading, place the files in the following directory:
 
-```text
+```
 data/raw/
 ├── fraudTrain.csv
 └── fraudTest.csv
@@ -151,7 +149,7 @@ python main.py
 
 All experiment settings are managed through:
 
-```text
+```
 configs/config.yaml
 ```
 
@@ -170,7 +168,7 @@ This makes it easy to reproduce experiments and compare different configurations
 
 After training, the pipeline automatically generates:
 
-```text
+```
 outputs/
 ├── models/
 │   └── trained_model.pkl
