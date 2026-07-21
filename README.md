@@ -1,47 +1,69 @@
-# 💳 Credit Card Fraud Detection
+# Credit Card Fraud Detection
 
-## 📌 Overview
-
-This project detects fraudulent credit card transactions using machine learning.
-It is designed as a **modular, scalable ML pipeline** with proper project structure, configuration management, and reproducible workflows.
+A machine learning pipeline for detecting fraudulent credit card transactions. The project follows a modular architecture with separate components for data processing, feature engineering, model training, and evaluation, making it easy to maintain, experiment with, and extend.
 
 ---
 
-## 🧠 Pipeline Overview
+## Overview
 
-![ML Pipeline](assets/pipeline.png)
+Credit card fraud detection is a highly imbalanced classification problem where correctly identifying fraudulent transactions is more important than maximizing overall accuracy.
 
-The pipeline includes:
-
-* Data loading
-* Feature engineering
-* Preprocessing
-* Model training (CatBoost / XGBoost)
-* Evaluation (Recall, F1-score)
-* Model & metrics saving
+This project focuses on building a reproducible machine learning workflow that processes transaction data, engineers meaningful features, trains classification models, and evaluates their performance using metrics suited for imbalanced datasets.
 
 ---
 
-## 🏗️ Project Structure
+## Features
 
+- Modular machine learning pipeline
+- Configuration-driven experiments using YAML
+- Automated feature engineering
+- Support for CatBoost and XGBoost
+- Model evaluation using Recall and F1 Score
+- Automatic model and metrics saving
+- Organized project structure for scalability
+
+---
+
+## Pipeline
+
+The training workflow consists of the following stages:
+
+1. Load transaction data
+2. Perform feature engineering
+3. Preprocess the dataset
+4. Train the selected model
+5. Evaluate model performance
+6. Save the trained model and evaluation metrics
+
+> Add the pipeline diagram below once available.
+
+```text
+assets/pipeline.png
 ```
+
+---
+
+## Project Structure
+
+```text
 fraud-detection/
+│
+├── configs/
+│   └── config.yaml
 │
 ├── data/
 ├── notebooks/
+├── outputs/
+│
+├── assets/
+│   └── pipeline.png
+│
 ├── src/
 │   ├── data/
 │   ├── features/
 │   ├── models/
 │   ├── pipelines/
 │   └── utils/
-│
-├── configs/
-│   └── config.yaml
-│
-├── outputs/
-├── assets/
-│   └── pipeline.png
 │
 ├── main.py
 ├── requirements.txt
@@ -50,106 +72,147 @@ fraud-detection/
 
 ---
 
-## ⚙️ Key Features
+## Feature Engineering
 
-* 📦 **Modular pipeline-based architecture**
-* ⚙️ **Config-driven experimentation**
-* 🧠 **Feature engineering**
+The pipeline creates several features to improve fraud detection, including:
 
-  * Time-based features
-  * Time since last transaction
-  * Distance using Haversine formula
-  * Age calculation
-* 🤖 **Model support**
-
-  * CatBoost (native categorical handling)
-  * XGBoost (encoding pipeline)
-* 📊 **Evaluation metrics**
-
-  * Recall (priority)
-  * F1 Score
+- Transaction time features
+- Time elapsed since the previous transaction
+- Geographic distance between transactions using the Haversine formula
+- Customer age
+- Additional preprocessing required by the selected model
 
 ---
 
-## 📂 Dataset
+## Models
 
-Download from Kaggle:
+The project currently supports:
+
+### CatBoost
+
+- Native handling of categorical features
+- Minimal preprocessing
+- Suitable for structured tabular datasets
+
+### XGBoost
+
+- Gradient boosting with encoded categorical features
+- Flexible and widely used for classification tasks
+
+The model can be selected through the configuration file without modifying the training pipeline.
+
+---
+
+## Dataset
+
+The dataset is available on Kaggle:
+
 https://www.kaggle.com/datasets/kartik2112/fraud-detection
 
-Place files in:
+After downloading, place the files in the following directory:
 
-```
+```text
 data/raw/
-  ├── fraudTrain.csv
-  └── fraudTest.csv
+├── fraudTrain.csv
+└── fraudTest.csv
 ```
 
 ---
 
-## 🚀 How to Run
+## Installation
 
-### 1. Install dependencies
+Clone the repository:
 
+```bash
+git clone https://github.com/gopal092003/fraud-detection.git
+
+cd fraud-detection
 ```
+
+Install the required dependencies:
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Run pipeline
+---
 
-```
+## Running the Project
+
+Start the training pipeline with:
+
+```bash
 python main.py
 ```
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
-All parameters are controlled via:
+All experiment settings are managed through:
 
-```
+```text
 configs/config.yaml
 ```
 
-You can:
+You can configure:
 
-* Switch models (CatBoost ↔ XGBoost)
-* Adjust hyperparameters
-* Modify feature settings
+- Model selection
+- Hyperparameters
+- Feature engineering options
+- Training settings
+
+This makes it easy to reproduce experiments and compare different configurations.
 
 ---
 
-## 📊 Output
+## Outputs
 
-Generated automatically:
+After training, the pipeline automatically generates:
 
-```
+```text
 outputs/
-├── models/      # saved models (.pkl)
-└── metrics/     # evaluation results (.json)
+├── models/
+│   └── trained_model.pkl
+│
+└── metrics/
+    └── evaluation.json
 ```
 
 ---
 
-## 🎯 Key Insights
+## Evaluation
 
-* Fraud detection is **highly imbalanced** → Recall is critical
-* Feature engineering significantly improves performance
-* CatBoost handles categorical data effectively without encoding
-* XGBoost performs well with proper preprocessing
+Because fraudulent transactions represent only a small fraction of the dataset, the project prioritizes metrics that better reflect fraud detection performance.
 
----
+Current evaluation metrics include:
 
-## 🔮 Future Improvements
-
-* MLflow experiment tracking
-* Hyperparameter tuning (Optuna)
-* Real-time inference API (FastAPI)
-* Dockerization
+- Recall
+- F1 Score
 
 ---
 
-## 👨‍💻 Author
+## Future Improvements
+
+Some planned enhancements include:
+
+- MLflow experiment tracking
+- Hyperparameter optimization with Optuna
+- FastAPI inference service
+- Docker support
+- Model versioning
+- Automated data validation
+
+---
+
+## Author
 
 **Gopal Gupta**
 
-* GitHub: https://github.com/gopal092003
+GitHub: https://github.com/gopal092003
+
+---
+
+## License
+
+This project is licensed under the MIT License.
